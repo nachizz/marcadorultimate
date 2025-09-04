@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ultimate Frisbee - Marcador</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Pantalla de Configuración -->
+    <div id="setup-screen">
+      <h1>⚡ Ultimate Frisbee</h1>
+      <h2>Configuración Partido</h2>
+      <form id="setup-form">
+        <label for="team1">Equipo 1:</label>
+        <input type="text" id="team1" name="team1" required class="team-green" placeholder="Nombre equipo verde">
+        <label for="team2">Equipo 2:</label>
+        <input type="text" id="team2" name="team2" required class="team-red" placeholder="Nombre equipo rojo">
+
+        <label for="gameTime">Tiempo total (min):</label>
+        <input type="number" id="gameTime" name="gameTime" min="1" required>
+
+        <label for="winPoints">Puntos para ganar:</label>
+        <input type="number" id="winPoints" name="winPoints" min="1" required>
+
+        <div class="section">
+          <h3>Medio Tiempo</h3>
+          <label for="halfTime">Half a tiempo (min):</label>
+          <input type="number" id="halfTime" name="halfTime" min="1">
+          <label for="halfPoints">Half a puntos:</label>
+          <input type="number" id="halfPoints" name="halfPoints" min="1">
+        </div>
+
+        <div class="section">
+          <h3>Gender Rule Inicial</h3>
+          <label>¿Quién comienza?</label>
+          <div class="radio-group">
+            <input type="radio" id="gender-m" name="genderRule" value="chicos" required>
+            <label for="gender-m">Chicos</label>
+            <input type="radio" id="gender-f" name="genderRule" value="chicas">
+            <label for="gender-f">Chicas</label>
+          </div>
+        </div>
+        <div class="section">
+          <h3>Cap</h3>
+          <label>¿Activar cap?</label>
+          <div class="radio-group">
+            <input type="radio" id="cap-yes" name="capRule" value="si" required>
+            <label for="cap-yes">Sí</label>
+            <input type="radio" id="cap-no" name="capRule" value="no">
+            <label for="cap-no">No</label>
+            <input type="radio" id="cap-tie" name="capRule" value="empate">
+            <label for="cap-tie">En caso de empate</label>
+          </div>
+        </div>
+        <button type="submit" class="start-btn">Guardar y Comenzar Partido</button>
+      </form>
+    </div>
+    <!-- Pantalla Marcador -->
+    <div id="score-screen" style="display:none;">
+      <h1>⚡ Ultimate Frisbee</h1>
+      <div class="score-header">
+        <div class="score-team">
+          <span class="score-teamname team-green" id="score-team1"></span>
+          <div class="score-points">
+            <button class="score-btn" id="team1-minus">–</button>
+            <span id="team1-points">0</span>
+            <button class="score-btn" id="team1-plus">+</button>
+          </div>
+          <button class="timeout-btn" id="team1-timeout" disabled>Time Out</button>
+        </div>
+        <div class="score-team">
+          <span class="score-teamname team-red" id="score-team2"></span>
+          <div class="score-points">
+            <button class="score-btn" id="team2-minus">–</button>
+            <span id="team2-points">0</span>
+            <button class="score-btn" id="team2-plus">+</button>
+          </div>
+          <button class="timeout-btn" id="team2-timeout" disabled>Time Out</button>
+        </div>
+      </div>
+      <div class="score-info">
+        <div>
+          <span>Tiempo partido: </span>
+          <span id="game-timer">00:00</span>
+        </div>
+        <div>
+          <span>Puntos para ganar: </span>
+          <span id="score-to-win"></span>
+        </div>
+        <div>
+          <span>Medio tiempo: </span>
+          <span id="half-desc"></span>
+        </div>
+        <div>
+          <span>Cap: </span>
+          <span id="cap-desc"></span>
+        </div>
+        <div>
+          <span>Gender Rule:</span>
+          <span id="gender-rule"></span>
+        </div>
+        <div>
+          <span>Render Rule Secuencia ABBA: </span>
+          <span id="render-rule"></span>
+        </div>
+        <div id="timeout-indicator" style="display:none;">
+          <span id="timeout-team"></span>
+          <span id="timeout-timer"></span>
+        </div>
+      </div>
+      <button id="start-match-btn" class="start-btn">Empezar partido</button>
+      <div id="match-over" style="display:none;">
+        <div id="final-result"></div>
+        <div id="best-streak"></div>
+        <button id="share-btn" class="start-btn" style="margin-top:10px;">Compartir por WhatsApp</button>
+        <button id="reset-btn" class="start-btn">Nuevo partido</button>
+      </div>
+    </div>
+    <!-- Ventana emergente para género del siguiente punto, half y final -->
+    <div id="popup" class="popup" style="display:none;">
+      <div class="popup-content" id="popup-content"></div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
